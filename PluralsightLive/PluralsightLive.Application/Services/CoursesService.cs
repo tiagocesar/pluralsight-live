@@ -13,9 +13,10 @@ namespace PluralsightLive.Application.Services
 
         private readonly ILogger<CoursesService> _logger;
 
-        public CoursesService(ICoursesRepository coursesRepository, ILogger<CoursesService> logger)
+        public CoursesService(ICoursesRepository coursesRepository, IMailService mailService, ILogger<CoursesService> logger)
         {
             _coursesRepository = coursesRepository;
+            _mailService = mailService;
 
             _logger = logger;
         }

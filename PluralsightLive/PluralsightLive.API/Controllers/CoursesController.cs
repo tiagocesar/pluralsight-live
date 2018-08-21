@@ -32,6 +32,11 @@ namespace PluralsightLive.API.Controllers
             {
                 var result = await _coursesService.AddStudentToCourseAsync(addStudentRequest);
 
+                if (!result.Success)
+                {
+                    return BadRequest(result);
+                }
+
                 return Ok(result);
             }
             catch (Exception e)

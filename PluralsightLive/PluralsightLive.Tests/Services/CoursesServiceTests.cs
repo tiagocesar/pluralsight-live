@@ -24,9 +24,12 @@ namespace PluralsightLive.Tests.Services
 
             courseRepositoryMock.Setup(x => x.CourseExists(It.IsAny<int>())).ReturnsAsync(false);
 
+            var mailServiceMock = new Mock<IMailService>();
+
             var loggerMock = new Mock<ILogger<CoursesService>>();
 
-            var coursesService = new CoursesService(courseRepositoryMock.Object, loggerMock.Object);
+            var coursesService =
+                new CoursesService(courseRepositoryMock.Object, mailServiceMock.Object, loggerMock.Object);
 
             var result = await coursesService.AddStudentToCourseAsync(GetStudentRequest);
 
@@ -40,9 +43,12 @@ namespace PluralsightLive.Tests.Services
 
             courseRepositoryMock.Setup(x => x.CourseIsFull(It.IsAny<int>())).ReturnsAsync(false);
 
+            var mailServiceMock = new Mock<IMailService>();
+
             var loggerMock = new Mock<ILogger<CoursesService>>();
 
-            var coursesService = new CoursesService(courseRepositoryMock.Object, loggerMock.Object);
+            var coursesService =
+                new CoursesService(courseRepositoryMock.Object, mailServiceMock.Object, loggerMock.Object);
 
             var result = await coursesService.AddStudentToCourseAsync(GetStudentRequest);
 
@@ -59,9 +65,12 @@ namespace PluralsightLive.Tests.Services
             courseRepositoryMock.Setup(x => x.AddStudentToCourseAsync(It.IsAny<AddStudentRequest>()))
                 .ReturnsAsync((false, ""));
 
+            var mailServiceMock = new Mock<IMailService>();
+
             var loggerMock = new Mock<ILogger<CoursesService>>();
 
-            var coursesService = new CoursesService(courseRepositoryMock.Object, loggerMock.Object);
+            var coursesService =
+                new CoursesService(courseRepositoryMock.Object, mailServiceMock.Object, loggerMock.Object);
 
             var result = await coursesService.AddStudentToCourseAsync(GetStudentRequest);
 

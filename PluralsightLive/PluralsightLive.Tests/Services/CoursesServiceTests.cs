@@ -57,7 +57,7 @@ namespace PluralsightLive.Tests.Services
             courseRepositoryMock.Setup(x => x.CourseExists(It.IsAny<int>())).ReturnsAsync(true);
             courseRepositoryMock.Setup(x => x.CourseIsFull(It.IsAny<int>())).ReturnsAsync(true);
             courseRepositoryMock.Setup(x => x.AddStudentToCourseAsync(It.IsAny<AddStudentRequest>()))
-                .ReturnsAsync(false);
+                .ReturnsAsync((false, ""));
 
             var loggerMock = new Mock<ILogger<CoursesService>>();
 

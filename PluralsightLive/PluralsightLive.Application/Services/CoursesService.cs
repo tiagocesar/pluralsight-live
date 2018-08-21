@@ -9,6 +9,7 @@ namespace PluralsightLive.Application.Services
     public class CoursesService : ICoursesService
     {
         private readonly ICoursesRepository _coursesRepository;
+        private readonly IMailService _mailService;
 
         private readonly ILogger<CoursesService> _logger;
 
@@ -40,7 +41,15 @@ namespace PluralsightLive.Application.Services
         {
             var result = await _coursesRepository.AddStudentToCourseAsync(addStudentRequest);
 
-            return (result, "Student enrolled successfully");
+            if (result.success)
+            {
+                _logger.LogInformation("Sending the enrollment successful message to student");
+                
+                await _mailService.SendSuccessMessageToStudent(addStudentRequest.StudentName,
+                    addStudentRequest.StudentEmail);
+            }
+
+            return result;
         }
 
         public async Task<DefaultResponse> AddStudentToCourseAsync(AddStudentRequest addStudentRequest)
@@ -58,6 +67,8 @@ namespace PluralsightLive.Application.Services
                     Message = validationResult.message
                 };
             }
+            
+            _logger.LogInformation("The course informed is valid and has free slots");
 
             var result = await ProceedWithStudentEnrollingAsync(addStudentRequest);
 

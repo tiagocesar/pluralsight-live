@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PluralsightLive.Application.Services;
+using PluralsightLive.Infrastructure.Repositories;
 
 namespace PluralsightLive.API
 {
@@ -18,6 +20,11 @@ namespace PluralsightLive.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ICoursesService, CoursesService>();
+            services.AddScoped<ICoursesRepository, CoursesRepository>();
+
+            services.AddSingleton<IMailService, MailService>();
+            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

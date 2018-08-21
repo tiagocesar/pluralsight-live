@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using PluralsightLive.Domain.Models;
 using PluralsightLive.Domain.Requests;
 
 namespace PluralsightLive.Infrastructure.Repositories
@@ -7,6 +8,12 @@ namespace PluralsightLive.Infrastructure.Repositories
     {
         public Task<(bool success, string message)> AddStudentToCourseAsync(AddStudentRequest addStudentRequest)
         {
+            var student = new Student
+            {
+                Name = addStudentRequest.StudentName,
+                Email = addStudentRequest.StudentEmail
+            };
+            
             throw new System.NotImplementedException();
         }
 

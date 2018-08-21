@@ -6,6 +6,12 @@
     <ProjectReference Include="..\PluralsightLive.Domain\PluralsightLive.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Dapper">
+      <Version>1.50.5</Version>
+    </PackageReference>
+    <PackageReference Include="Dapper.Contrib">
+      <Version>1.50.5</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions">
       <Version>2.1.1</Version>
     </PackageReference>
